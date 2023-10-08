@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="navbar.css">
 </head>
 
 <body>
   <!--NavBar Início-->
   <nav>
     <div class="logo-menu">
-      <a href="inicial.php"><img style="
+      <a href="index.php"><img style="
               display: block;
               margin: auto;
               transition: background-color 300ms;
@@ -25,10 +26,10 @@
       <li><a href="#">CONSULTA</a></li>
       <li><a href="#">MODELO</a></li>
       <li><a href="about.php">SOBRE NÓS</a></li>
-      <li><a href="#">SERVIÇOS</a></li>
+      <li><a href="serviços.php">SERVIÇOS</a></li>
 
       <li>
-        <a class="login-button-menu" href="Login.html">Login</a>
+        <a class="login-button-menu" href="login.php">Login</a>
       </li>
     </ul>
   </nav>

@@ -9,13 +9,15 @@
 
 <body>
   <!--NavBar Início-->
-  <?php include_once('navbar_main.php'); ?>
+  <div class="navbar">
+    <?php include_once('navbar_main.php'); ?>
+  </div>
   <!--NavBar Fim-->
 
   <!--Wave Início-->
   <div class="header">
     <div class="inner-header flex">
-      <a href="index.html"><img style="
+      <a href="index.php"><img style="
               display: block;
               margin: auto;
               transition: background-color 300ms;

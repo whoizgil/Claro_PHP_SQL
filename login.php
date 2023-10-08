@@ -10,7 +10,7 @@
   <body>
     <section class="container-login">
       <div class="div-logo">
-        <a class="ancora-logo" href="index.html"
+        <a class="ancora-logo" href="index.php"
           ><img
             src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png"
             alt="logo claro"
@@ -18,7 +18,7 @@
       </div>
       <form
         id="formulario"
-        action="index.html"
+        action="index.php"
         onsubmit="return validarFormulario()"
       >
         <h1>Login</h1>
