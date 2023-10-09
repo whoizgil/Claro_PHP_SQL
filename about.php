@@ -21,7 +21,7 @@
     }
 
     .card {
-      background-color: white;
+
       border: 1px solid #cccccc;
       padding: 10px;
       border: none;
@@ -77,6 +77,14 @@
 
     #card3 img {
       max-width: 768px;
+    }
+
+    @media screen and (max-width: 800px) {
+      .container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
     }
   </style>
 

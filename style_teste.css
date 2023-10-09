@@ -8,9 +8,6 @@
   letter-spacing: 1px;
   font-weight: 300;
 }
-body {
-  overflow-x: hidden;
-}
 nav {
   height: 4.5rem;
   width: 100vw;

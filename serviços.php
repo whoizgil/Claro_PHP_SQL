@@ -6,9 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços Claro</title>
     <link rel="stylesheet" href="style_teste.css" />
+    <title>Serviços</title>
     <style>
+        @media screen and (max-width: 1230px) {
+            .titulo-net {
+                font-size: 2rem;
+                margin-top: 115px;
+                /* flex-direction: column; */
+                margin-bottom: 45px;
+            }
+
+            .servico_internet {
+                display: flex;
+                margin-top: 3%;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-internet {
+                margin-bottom: 25px;
+            }
+
+        }
+
+
         .titulo-net {
-            margin-top: 8%;
+            margin-top: 100px;
             color: black;
             text-align: center;
             font-family: 'Wix Madefor Display', sans-serif;
