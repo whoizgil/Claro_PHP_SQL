@@ -30,7 +30,7 @@
       </div>
 
       <div class="links-login" id="esqsenha">
-        <a href="RecSenha.html">Esqueceu sua senha?</a>
+        <a href="RecSenha.php">Esqueceu sua senha?</a>
       </div>
 
       <input class="botao-login" type="submit" value="Login" />

@@ -106,7 +106,7 @@
             </fieldset>
 
             <div class="links">
-                <p>Já possui uma conta? <a href="Login.html">Login</a></p>
+                <p>Já possui uma conta? <a href="login.php">Login</a></p>
             </div>
 
             <input class="botao-cadastro" type="submit" value="Cadastrar" />

@@ -84,6 +84,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+        margin-top: 105px;
       }
     }
   </style>

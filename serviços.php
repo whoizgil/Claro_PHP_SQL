@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="style_teste.css" />
     <title>Serviços</title>
     <style>
-        @media screen and (max-width: 1230px) {
+        @media screen and (max-width: 1384px) {
+            .plano-net {
+                font-weight: 400;
+            }
+
+            .preco-net {
+                font-size: 20px;
+            }
+
             .titulo-net {
                 font-size: 2rem;
                 margin-top: 115px;
@@ -23,10 +31,10 @@
                 align-items: center;
             }
 
-            .card-internet {
+            .card-internet,
+            .card-internet2 {
                 margin-bottom: 25px;
             }
-
         }
 
 
@@ -43,6 +51,7 @@
             display: flex;
             justify-content: center;
             margin-top: 3%;
+            margin-right: 45px;
         }
 
         .card-internet {
@@ -55,6 +64,7 @@
             text-align: center;
             padding-top: 20px;
             margin-left: 3%;
+            padding: 12px;
         }
 
         .plano-net {
