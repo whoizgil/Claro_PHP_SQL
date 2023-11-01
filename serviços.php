@@ -1,13 +1,36 @@
+<?php
+session_start();
+if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
+    header('location:erro_login.php');
+}
+
+$logado = $_SESSION['login'];
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviços Claro</title>
+    <title>Serviços - Claro</title>
     <link rel="stylesheet" href="style_teste.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <title>Serviços</title>
     <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #cccccc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #CE2D2D;
+
+        }
+
         @media screen and (max-width: 1384px) {
             .plano-net {
                 font-weight: 400;
@@ -42,9 +65,10 @@
             margin-top: 100px;
             color: black;
             text-align: center;
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             font-weight: 500px;
             color: black;
+            text-shadow: -1px 3px 3px rgba(173, 12, 55, 0.56);
         }
 
         .servico_internet {
@@ -68,21 +92,21 @@
         }
 
         .plano-net {
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             color: black;
             font-weight: 800;
             padding-top: 30px
         }
 
         .info-net {
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             font-size: 25px;
             color: black;
             padding-top: 10px;
         }
 
         .sub-net {
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             font-size: 20px;
             color: black;
             margin-top: 10px;
@@ -90,14 +114,14 @@
         }
 
         .preco-net {
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             font-size: 30px;
             color: black;
             padding-top: 10px;
         }
 
         .span-net {
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             font-size: 50px;
             color: black;
             padding-top: 10px;
@@ -105,7 +129,7 @@
         }
 
         .botao-net {
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             background-color: #FF0000;
             color: white;
             border-radius: 15px;
@@ -135,9 +159,10 @@
             margin-top: 5%;
             color: black;
             text-align: center;
-            font-family: 'Wix Madefor Display', sans-serif;
+            font-family: 'Onest', sans-serif;
             font-weight: 500px;
             color: black;
+            text-shadow: -1px 3px 3px rgba(173, 12, 55, 0.56);
         }
 
         .card-internet2 {

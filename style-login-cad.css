@@ -293,7 +293,7 @@
   }
 
   body.recsenha-html .botao-limpar {
-    margin-top: 25px;
+    margin-top: 5px;
   }
 
   .container-login form h1 {
@@ -517,7 +517,7 @@
   .container-login {
     position: relative;
     width: 380px;
-    height: 400px;
+    height: 420px;
     border-radius: 15px;
     background: #cecece;
     box-shadow: 0px 0px 10px 3px #0000004b;

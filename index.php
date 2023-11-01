@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
+  header("Location: erro_login.php");
+  exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,7 +23,7 @@
     <?php include_once('navbar_main.php'); ?>
   </div>
   <!--NavBar Fim-->
-
+  </div>
   <!--Wave Início-->
   <div class="header">
     <div class="inner-header flex">
@@ -39,9 +47,7 @@
       </svg>
     </div>
   </div>
-
   <!--Wave Fim-->
-
   <script src="main-script.js"></script>
 </body>
 

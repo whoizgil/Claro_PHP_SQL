@@ -29,7 +29,10 @@
       <li><a href="serviços.php">SERVIÇOS</a></li>
 
       <li>
-        <a class="login-button-menu" href="login.php">Login</a>
+        <?php
+        echo 'Usuário:<a href="RecSenha.php" title="Clique aqui para alterar a senha" style= "color: inherit;
+        text-decoration: none;">' . $_SESSION['nome'] . '</a> <a href="logout.php" title= "Clique aqui para sair da sua conta">Logout</a>';
+        ?>
       </li>
     </ul>
   </nav>
