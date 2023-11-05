@@ -7,30 +7,67 @@ if (!isset($_SESSION['login'])) {
     exit();
 }
 
-$sql_code = "SELECT CPF, Nome, Email, Nome_Materno, Celular, Tel_Fixo, Endereco, Login, Data_Nascimento, Sexo, Senha, Tipo, Statuses FROM usuario WHERE login = '" . $_SESSION['login'] . "'";
+if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
+    header("Location: index.php");
+    exit();
+}
+
+if ($_SESSION['tipo'] == 'm') {
+    $_SESSION['2fa'] = true;
+    header('location:index.php');
+    exit();
+}
+
+$sql_code = "SELECT CPF, Nome, Email, Nome_Materno, Celular, Tel_Fixo, Endereco, Login, Data_Nascimento, Sexo, Senha, Tipo, Statuses, CEP FROM usuario WHERE login = '" . $_SESSION['login'] . "'";
 $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL:" . $mysqli->error);
 $usuario = $sql_query->fetch_assoc();
 
 $perguntas = array(
-    "Qual é o CEP do seu endereço?" => $usuario['Endereco'],
+    "Qual é o CEP do seu endereço?" => $usuario['CEP'],
     "Qual é o nome da sua mãe?" => $usuario['Nome_Materno'],
     "Qual é a sua data de nascimento?" => $usuario['Data_Nascimento']
 );
 
-$pergunta_aleatoria = array_rand($perguntas);
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    unset($_SESSION['pergunta']);
+}
+
+
+if (!isset($_SESSION['pergunta'])) {
+    $_SESSION['pergunta'] = array_rand($perguntas);
+}
+
+$pergunta_aleatoria = $_SESSION['pergunta'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($pergunta_aleatoria == "Qual é a sua data de nascimento?") {
+        $data_nascimento = $_POST['resposta'];
+        $data_nascimento_format = date('Y-m-d', strtotime(str_replace('/', '-', $data_nascimento)));
 
-
-    if ($_POST['resposta'] == $perguntas[$pergunta_aleatoria]) {
-
+        if ($data_nascimento_format != '1970-01-01' && strtotime($data_nascimento_format)) {
+            if ($data_nascimento_format == $usuario['Data_Nascimento']) {
+                $_SESSION['2fa'] = true;
+                unset($_SESSION['pergunta']);
+                header("Location: index.php");
+                exit();
+            } else {
+                session_destroy();
+                header("Location: login.php");
+                exit();
+            }
+        }
+    } elseif ($_POST['resposta'] == $perguntas[$pergunta_aleatoria]) {
+        unset($_SESSION['pergunta']);
         header("Location: index.php");
         $_SESSION['2fa'] = true;
+        exit();
     } else {
         session_destroy();
         header("Location: login.php");
+        exit();
     }
-} ?>
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -52,7 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1>Verificação de Duas Etapas</h1>
         <p class="pergunta-2fa">Pergunta: <?php echo $pergunta_aleatoria; ?></p>
         <form method="post" action="">
-            <input class="input-resposta" type="text" name="resposta" placeholder="Sua Resposta" required>
+            <?php if ($pergunta_aleatoria == "Qual é a sua data de nascimento?") : ?>
+                <input class="input-resposta" type="date" name="resposta" required>
+            <?php else : ?>
+                <input class="input-resposta" type="text" name="resposta" placeholder="Sua Resposta" required>
+            <?php endif; ?>
             <button class="botao-confirmar" type="submit">Confirmar Resposta</button>
         </form>
     </div>

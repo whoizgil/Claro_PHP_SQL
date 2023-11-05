@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <section class="container">
+    <section class="container" style="height: 690px;">
         <div class="div-logo">
             <a class="ancora-logo" href="index.php"><img class="logo" src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
         </div>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="campo-cadastro">
-                    <input type="text" id="login" name="login" autocomplete="off" required="required" />
+                    <input type="text" id="login" name="login" autocomplete="off" required="required" maxlength="6" />
                     <span>Login:</span>
                     <i></i>
                 </div>
@@ -74,19 +74,32 @@
 
             <fieldset>
                 <div class="campo-cadastro">
-                    <input type="password" id="senha" name="senha" required="required" />
+                    <input type="password" id="senha" name="senha" required="required" maxlength="8" />
                     <span>Senha:</span>
                     <i></i>
                 </div>
 
                 <div class="campo-cadastro">
-                    <input type="password" id="conf_senha" name="conf_senha" required="required" />
+                    <input type="password" id="conf_senha" name="conf_senha" required="required" maxlength="8" />
                     <span>Confirmar senha:</span>
                     <i></i>
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset style="display: flex;
+    justify-content: space-evenly;">
+                <div class="campo-cadastro">
+                    <input type="text" id="cep" name="cep" autocomplete="off" required="required" />
+                    <span>CEP:</span>
+                    <i></i>
+                </div>
+
+            </fieldset>
+
+            <fieldset style="display: flex;
+                 flex-direction: row;
+                 flex-wrap: nowrap;
+                 justify-content: space-evenly;">
                 <div class="campo-cadastro-select">
                     <span>Sexo:</span>
                     <br />
@@ -114,6 +127,20 @@
         </form>
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formulario = document.getElementById("formulario");
+            const senha = document.getElementById("senha");
+            const conf_senha = document.getElementById("conf_senha");
+
+            formulario.addEventListener("submit", function(event) {
+                if (senha.value !== conf_senha.value) {
+                    event.preventDefault();
+                    alert("As senhas não coincidem. Por favor, verifique.");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

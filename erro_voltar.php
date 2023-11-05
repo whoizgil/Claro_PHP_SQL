@@ -26,7 +26,7 @@
             margin-left: 35%;
             border: none;
             outline: none;
-            padding: 9px 25px;
+            padding: 5px 25px;
             background: #de0d0d;
             color: #fff;
             cursor: pointer;
@@ -37,6 +37,7 @@
             margin-top: 10px;
             box-shadow: 4px 5px 5px #00000047;
             text-decoration: none;
+            margin: 36px;
         }
 
         .botao-voltar:hover {
@@ -54,10 +55,13 @@
         <div class="div-logo">
             <a class="ancora-logo" href="index.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
         </div>
-        <h1 class="titulo-erro">Erro de Autenticação</h1>
-        <p class="mensagem-erro">Ocorreu um erro de autenticação. Verifique suas credenciais e tente novamente.</p>
-        <a class="botao-voltar" href="login.php">Login</a>
+        <h1 class="titulo-erro">Erro</h1>
+        <p class="mensagem-erro">Ocorreu um erro ao tentar acessar essa página. Contate o suporte e tente novamente.</p>
+        <a class="botao-voltar" href="https://api.whatsapp.com/send?1=pt_BR&phone=5511993031052&text=Olá,%20Preciso%20de%20ajuda%20sobre%20minha%20conta%20">Suporte</a>
+        <a class="botao-voltar" href="javascript:void(0)" onClick="history.go(-1); return false;">Voltar</a>
     </section>
+
+
 </body>
 
 </html>

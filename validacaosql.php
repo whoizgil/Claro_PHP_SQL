@@ -18,7 +18,7 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
             exit();
         }
 
-        $sql_code = "SELECT CPF, Nome, Email, Nome_Materno, Celular, Tel_Fixo, Endereco, Login, Data_Nascimento, Sexo, Senha, Tipo, Statuses FROM usuario WHERE login = '$login' AND senha = '$senha'";
+        $sql_code = "SELECT CPF, Nome, Email, Nome_Materno, Celular, Tel_Fixo, Endereco, Login, Data_Nascimento, Sexo, Senha, Tipo, Statuses, CEP FROM usuario WHERE login = '$login' AND senha = '$senha'";
         $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL:" . $mysqli->error);
 
         $quantidade = $sql_query->num_rows;
@@ -43,7 +43,7 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
                 $result_tipo = $mysqli->query($sql_tipo);
                 $tipo = $result_tipo->fetch_assoc()['tipo'];
 
-                // Verifique se o tipo de usuário selecionado corresponde ao tipo no banco de dados
+
                 if ($tipousuario == $tipo) {
                     session_start();
                     $_SESSION['nome'] = $nome;

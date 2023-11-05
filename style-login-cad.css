@@ -121,7 +121,7 @@
 
   .campo-cadastro input:valid ~ span,
   .campo-cadastro input:focus ~ span {
-    color: #fff;
+    color: #cecece;
     font-size: 0.75em;
     transform: translateY(-30px);
     font-size: 1em;
@@ -355,7 +355,7 @@
   .container {
     position: relative;
     width: 760px;
-    height: 615px;
+    height: 690px;
     border-radius: 15px;
     background: #cecece;
     box-shadow: 0px 0px 10px 3px #0000004b;
@@ -637,3 +637,5 @@
   margin-top: 30%;
   /*opacity: 0;*/
 }
+
+

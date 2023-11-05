@@ -5,7 +5,7 @@ if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true
 }
 
 if ($_SESSION['tipo'] == 'm') {
-  header('location:erro_login.php');
+  header('location:erro_voltar.php');
 }
 
 $logado = $_SESSION['login'];
@@ -48,6 +48,21 @@ $logado = $_SESSION['login'];
       </div>
     </form>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const formulario = document.getElementById("formulario");
+      const senha = document.getElementById("nsenha");
+      const conf_senha = document.getElementById("csenha");
+
+      formulario.addEventListener("submit", function(event) {
+        if (senha.value !== conf_senha.value) {
+          event.preventDefault();
+          alert("As senhas não coincidem. Por favor, verifique.");
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

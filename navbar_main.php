@@ -23,7 +23,9 @@
       <div class="line3"></div>
     </div>
     <ul class="nav-links-menu">
-      <li><a href="#">CONSULTA</a></li>
+      <?php if ($_SESSION['tipo'] == 'm') {
+        echo '<li><a href="#">CONSULTA</a></li>';
+      } ?>
       <li><a href="#">MODELO</a></li>
       <li><a href="about.php">SOBRE NÓS</a></li>
       <li><a href="serviços.php">SERVIÇOS</a></li>
@@ -38,22 +40,20 @@
   </nav>
   <!--NavBar Fim-->
   <script>
-    // Hamburguer Menu Início
     const hamburger = document.querySelector(".hamburger-menu");
     const navLinks = document.querySelector(".nav-links-menu");
     const links = document.querySelectorAll(".nav-links-menu li");
 
     hamburger.addEventListener("click", () => {
-      //Animate Links
+
       navLinks.classList.toggle("open");
       links.forEach((link) => {
         link.classList.toggle("fade");
       });
 
-      //Hamburger Animation
+
       hamburger.classList.toggle("toggle");
     });
-    // Hamburguer Menu Fim
   </script>
 </body>
 
