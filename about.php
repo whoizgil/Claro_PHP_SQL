@@ -27,7 +27,7 @@ $logado = $_SESSION['login'];
 
     ::-webkit-scrollbar-thumb {
       background-color: #CE2D2D;
-      border-radius: 10px;
+
     }
 
     .container {
@@ -144,6 +144,9 @@ $logado = $_SESSION['login'];
     </div>
   </div>
 
+  <div class="footer">
+    <?php include_once('footer.php'); ?>
+  </div>
 </body>
 
 </html>

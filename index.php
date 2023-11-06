@@ -14,6 +14,20 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style_teste.css" />
   <title>Tela Inicial</title>
+  <style>
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #cccccc;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #CE2D2D;
+
+    }
+  </style>
 
 </head>
 
@@ -48,6 +62,10 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
     </div>
   </div>
   <!--Wave Fim-->
+
+  <div class="footer">
+    <?php include_once('footer.php'); ?>
+  </div>
   <script src="main-script.js"></script>
 </body>
 

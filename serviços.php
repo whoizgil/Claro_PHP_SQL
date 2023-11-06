@@ -256,7 +256,9 @@ $logado = $_SESSION['login'];
 
 
 
-
+    <div class="footer">
+        <?php include_once('footer.php'); ?>
+    </div>
 </body>
 
 </html>
