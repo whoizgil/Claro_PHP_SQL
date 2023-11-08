@@ -10,7 +10,6 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
         $login = $mysqli->real_escape_string($_POST['login']);
         $senha = $mysqli->real_escape_string($_POST['senha']);
 
-        // Verifique se o campo 'tipousuario' foi enviado no formulário
         if (isset($_POST['tipousuario'])) {
             $tipousuario = $mysqli->real_escape_string($_POST['tipousuario']);
         } else {
@@ -38,7 +37,6 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
             if ($cadastro['Statuses'] == 2) {
                 header("Location: erro_status_off.php");
             } else {
-                // Consulta SQL para verificar o tipo de usuário
                 $sql_tipo = "SELECT tipo FROM usuario WHERE login = '$login'";
                 $result_tipo = $mysqli->query($sql_tipo);
                 $tipo = $result_tipo->fetch_assoc()['tipo'];
