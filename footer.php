@@ -108,13 +108,16 @@
         </ul>
         <ul class="menu">
             <?php if ($_SESSION['tipo'] == 'm') {
-                echo '<li class="menu__item"><a class="menu__link" href="#">Consulta</a></li>';
+                echo '<li class="menu__item"><a class="menu__link" href="consulta.php">Consulta</a></li>';
             } ?>
             <li class="menu__item"><a class="menu__link" href="#">Modelo</a></li>
             <li class="menu__item"><a class="menu__link" href="serviços.php">Serviços</a></li>
             <li class="menu__item"><a class="menu__link" href="about.php">Sobre nós</a></li>
 
         </ul>
+        <?php if ($_SESSION['tipo'] == 'c') {
+            echo '<a class="logout" href="RecSenha.php">Alterar sua senha</a>';
+        } ?>
         <a class="logout" href="logout.php">Sair da sua conta</a>
         <p>&copy;2023 Claro | Todos Os Direitos Reservados</p>
     </footer>

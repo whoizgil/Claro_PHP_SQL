@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" type="text/css" href="navbar.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     </div>
     <ul class="nav-links-menu">
       <?php if ($_SESSION['tipo'] == 'm') {
-        echo '<li><a href="#">CONSULTA</a></li>';
+        echo '<li><a href="consulta.php">CONSULTA</a></li>';
       } ?>
       <li><a href="#">MODELO</a></li>
       <li><a href="about.php">SOBRE NÓS</a></li>
@@ -32,8 +32,9 @@
 
       <li>
         <?php
-        echo 'Usuário:<a href="RecSenha.php" title="Clique aqui para alterar a senha" style= "color: inherit;
-        text-decoration: none;">' . $_SESSION['nome'] . '</a> <a href="logout.php" title= "Clique aqui para sair da sua conta">Logout</a>';
+        echo '<a style= "color: rgb(242, 245, 247);">Usuário:</a><a href="RecSenha.php" title="Clique aqui para alterar a senha" style= "color: rgb(242, 245, 247);
+        text-decoration: none; margin-left: -5px;
+        padding-right: 40px;">' . $_SESSION['nome'] . '</a> <a href="logout.php" title= "Clique aqui para sair da sua conta">Logout</a>';
         ?>
       </li>
     </ul>

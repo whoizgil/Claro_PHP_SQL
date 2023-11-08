@@ -36,6 +36,7 @@ nav {
 .nav-links-menu li a {
   text-decoration: none;
   margin: 0 0.7vw;
+  color: #f2f5f7;
 }
 
 .nav-links-menu li a:hover {
