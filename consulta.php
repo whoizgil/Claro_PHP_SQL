@@ -14,26 +14,40 @@ if ($_SESSION['tipo'] == 'c') {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Buscar o status atual do usuário
-    $stmt = $mysqli->prepare('SELECT statuses FROM usuario WHERE nome = ?');
-    $stmt->bind_param('s', $_POST['nome']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $statusAtual = $row['statuses'];
 
-    // Atualizar o status com base no status atual
-    if ($statusAtual == 1) {
-        $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "2" WHERE nome = ?');
+
+    if (isset($_POST['deleteUser'])) {
+        $nomeUsuario = $_POST['nome'];
+
+        $stmt = $mysqli->prepare('DELETE FROM usuario WHERE nome = ?');
+        $stmt->bind_param('s', $nomeUsuario);
+        $stmt->execute();
+
+
+        header("Location: consulta.php");
+        exit();
     } else {
-        $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "1" WHERE nome = ?');
-    }
-    $stmt->bind_param('s', $_POST['nome']);
-    $stmt->execute();
+        $stmt = $mysqli->prepare('SELECT statuses FROM usuario WHERE nome = ?');
+        $stmt->bind_param('s', $_POST['nome']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $statusAtual = $row['statuses'];
 
-    header("Location: consulta.php");
-    exit();
+
+        if ($statusAtual == 1) {
+            $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "2" WHERE nome = ?');
+        } else {
+            $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "1" WHERE nome = ?');
+        }
+        $stmt->bind_param('s', $_POST['nome']);
+        $stmt->execute();
+
+        header("Location: consulta.php");
+        exit();
+    }
 }
+
 
 
 $query = 'SELECT u.login, u.nome, u.celular, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c"';
@@ -67,7 +81,7 @@ $stmt = $mysqli->query($query);
         /* Table Styles */
 
         .table-wrapper {
-            margin: 110px 70px 70px;
+            margin: 10px 70px 70px;
             box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
         }
 
@@ -136,6 +150,35 @@ $stmt = $mysqli->query($query);
             top: 1px;
         }
 
+        .searchbar {
+            margin-top: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .searchbar input {
+            padding: 5px;
+            font-size: 15px;
+            border-width: 1px;
+            border-color: #f19595;
+            background-color: #FFFFFF;
+            color: #000000;
+            border-style: solid;
+            border-radius: 10px;
+            box-shadow: 0px 2px 9px rgba(66, 66, 66, .75);
+            text-shadow: 0px 0px 5px rgba(66, 66, 66, .75);
+            width: 50%;
+        }
+
+        .searchbar input:focus {
+            outline: none;
+        }
+
+        .searchbar input::placeholder {
+            text-align: center;
+        }
 
         /* Responsive */
 
@@ -224,6 +267,9 @@ $stmt = $mysqli->query($query);
     <div class="navbar">
         <?php include_once('navbar_main.php'); ?>
     </div>
+    <div class="searchbar">
+        <input type="text" id="searchInput" onkeyup="searchUsers()" placeholder="Pesquisar usuários">
+    </div>
     <div class="table-wrapper">
         <table class="fl-table">
             <thead>
@@ -257,6 +303,8 @@ $stmt = $mysqli->query($query);
                                     <input class="myButton" type="submit" value="Ativar">
 
                                 <?php endif; ?>
+                                <input type="hidden" name="nome" value="<?php echo htmlspecialchars($row['nome']); ?>">
+                                <input class="myButton" type="submit" name="deleteUser" value="Deletar">
                             </form>
 
 
@@ -271,6 +319,35 @@ $stmt = $mysqli->query($query);
     <div class="footer" style="margin-top: 265px;">
         <?php include_once('footer.php'); ?>
     </div>
+    <script>
+        function searchUsers() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByClassName("fl-table")[0];
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                var matchFound = false;
+                if (td) {
+                    for (j = 0; j < td.length; j++) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                    if (matchFound) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
 </body>
 
 </html>

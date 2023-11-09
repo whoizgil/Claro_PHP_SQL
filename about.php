@@ -4,8 +4,6 @@ if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true
   header('location:erro_login.php');
 }
 
-$logado = $_SESSION['login'];
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,6 +15,10 @@ $logado = $_SESSION['login'];
   <link rel="stylesheet" href="style_teste.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
   <style>
+    * {
+      font-family: 'Onest', sans-seri
+    }
+
     ::-webkit-scrollbar {
       width: 10px;
     }

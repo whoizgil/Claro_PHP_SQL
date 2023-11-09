@@ -13,8 +13,13 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style_teste.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
   <title>Tela Inicial</title>
   <style>
+    * {
+      font-family: 'Onest', sans-seri
+    }
+
     ::-webkit-scrollbar {
       width: 10px;
     }

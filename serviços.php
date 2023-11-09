@@ -18,6 +18,10 @@ $logado = $_SESSION['login'];
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <title>Serviços</title>
     <style>
+        * {
+            font-family: 'Onest', sans-serif;
+        }
+
         ::-webkit-scrollbar {
             width: 10px;
         }
