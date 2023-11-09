@@ -1,16 +1,39 @@
 <?php
 session_start();
-if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
-  header('location:erro_login.php');
+include('banco_de_dados/conexaosql.php');
+
+if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
+  header("Location: erro_login.php");
+  exit();
 }
 
 if ($_SESSION['tipo'] == 'm') {
   header('location:erro_voltar.php');
+  exit();
 }
 
-$logado = $_SESSION['login'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['nsenha']) && isset($_POST['csenha'])) {
+    $nsenha = $_POST['nsenha'];
+    $csenha = $_POST['csenha'];
 
+    if ($nsenha === $csenha) {
+      $sql = "UPDATE usuario SET Senha='$nsenha' WHERE Login='" . $_SESSION['login'] . "'";
+
+      if (mysqli_query($mysqli, $sql)) {
+        echo "<script>alert('Senha alterada com sucesso!'); window.location.href='index.php';</script>";
+        exit();
+      } else {
+        echo "Erro ao alterar a senha: " . mysqli_error($mysqli);
+      }
+    } else {
+      echo "<script>alert('As senhas não coincidem.');</script>";
+    }
+  }
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -18,7 +41,7 @@ $logado = $_SESSION['login'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="style-login-cad.css" />
-  <title>Telecall - Projeto</title>
+  <title>Alteração</title>
 </head>
 
 <body class="recsenha-html">
@@ -26,22 +49,22 @@ $logado = $_SESSION['login'];
     <div class="div-logo">
       <a class="ancora-logo" href="index.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo telecall" /></a>
     </div>
-    <form id="formulario" action="">
+    <form id="formulario" action="" method="POST">
       <h1>Alterar Senha</h1>
 
       <div class="campo-cadastro">
-        <input type="text" id="nsenha" required="required" maxlength="8" minlength="8" />
+        <input type="text" name="nsenha" id="nsenha" required="required" maxlength="8" minlength="8" />
         <span>Digite sua nova senha:</span>
         <i></i>
       </div>
       <div class="campo-cadastro">
-        <input type="text" id="csenha" required="required" maxlength="8" minlength="8" />
+        <input type="text" name="csenha" id="csenha" required="required" maxlength="8" minlength="8" />
         <span>Confirme sua nova senha:</span>
         <i></i>
       </div>
 
       <input class="botao-recsenha" type="submit" value="Enviar" />
-      <input class="botao-limpar" type="button" value="Limpar Tela" onclick="limparCampos()" />
+      <input class="botao-limpar" type="button" value="Limpar Tela" onclick="" />
 
       <div class="links-login" id="cadastro">
         <p>Não tem uma conta? <a href="cad.php">Cadastre-se</a></p>
