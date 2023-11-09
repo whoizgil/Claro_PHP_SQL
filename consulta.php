@@ -14,33 +14,29 @@ if ($_SESSION['tipo'] == 'c') {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    $cpfUsuario = $_POST['CPF'];
 
     if (isset($_POST['deleteUser'])) {
-        $nomeUsuario = $_POST['nome'];
-
-        $stmt = $mysqli->prepare('DELETE FROM usuario WHERE nome = ?');
-        $stmt->bind_param('s', $nomeUsuario);
+        $stmt = $mysqli->prepare('DELETE FROM usuario WHERE CPF = ?');
+        $stmt->bind_param('s', $cpfUsuario);
         $stmt->execute();
-
 
         header("Location: consulta.php");
         exit();
     } else {
-        $stmt = $mysqli->prepare('SELECT statuses FROM usuario WHERE nome = ?');
-        $stmt->bind_param('s', $_POST['nome']);
+        $stmt = $mysqli->prepare('SELECT statuses FROM usuario WHERE CPF = ?');
+        $stmt->bind_param('s', $cpfUsuario);
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         $statusAtual = $row['statuses'];
 
-
         if ($statusAtual == 1) {
-            $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "2" WHERE nome = ?');
+            $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "2" WHERE CPF = ?');
         } else {
-            $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "1" WHERE nome = ?');
+            $stmt = $mysqli->prepare('UPDATE usuario SET statuses = "1" WHERE CPF = ?');
         }
-        $stmt->bind_param('s', $_POST['nome']);
+        $stmt->bind_param('s', $cpfUsuario);
         $stmt->execute();
 
         header("Location: consulta.php");
@@ -50,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-$query = 'SELECT u.login, u.nome, u.celular, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c"';
+$query = 'SELECT u.login, u.nome, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c"';
 
 
 $stmt = $mysqli->query($query);
@@ -276,7 +272,7 @@ $stmt = $mysqli->query($query);
                 <tr>
                     <th>Login</th>
                     <th>Nome</th>
-                    <th>Celular</th>
+                    <th>CPF</th>
                     <th>Telefone Fixo</th>
                     <th>Tipo</th>
                     <th>Status</th>
@@ -288,7 +284,7 @@ $stmt = $mysqli->query($query);
                     <tr>
                         <td><?php echo htmlspecialchars($row['login']); ?></td>
                         <td><?php echo htmlspecialchars($row['nome']); ?></td>
-                        <td><?php echo htmlspecialchars($row['celular']); ?></td>
+                        <td><?php echo htmlspecialchars($row['CPF']); ?></td>
                         <td><?php echo htmlspecialchars($row['tel_fixo']); ?></td>
                         <td><?php echo htmlspecialchars($row['tipo_desc']); ?></td>
                         <td><?php echo htmlspecialchars($row['statuses_desc']); ?></td>
@@ -296,15 +292,15 @@ $stmt = $mysqli->query($query);
                             <form method="post" action="">
                                 <?php if ($row['statuses'] == 1) : ?>
 
-                                    <input type="hidden" name="nome" value="<?php echo htmlspecialchars($row['nome']); ?>">
+                                    <input type="hidden" name="CPF" value="<?php echo htmlspecialchars($row['CPF']); ?>">
                                     <input class="myButton" type="submit" value="Desativar">
                                 <?php else : ?>
-                                    <input type="hidden" name="nome" value="<?php echo htmlspecialchars($row['nome']); ?>">
+                                    <input type="hidden" name="CPF" value="<?php echo htmlspecialchars($row['CPF']); ?>">
                                     <input class="myButton" type="submit" value="Ativar">
 
                                 <?php endif; ?>
-                                <input type="hidden" name="nome" value="<?php echo htmlspecialchars($row['nome']); ?>">
-                                <input class="myButton" type="submit" name="deleteUser" value="Deletar">
+                                <input type="hidden" name="CPF" value="<?php echo htmlspecialchars($row['CPF']); ?>">
+                                <input class="myButton" type="submit" name="deleteUser" value="Deletar" onclick="return confirm('Você realmente deseja deletar o usuário ' + '<?php echo htmlspecialchars($row['nome']); ?>' + ' do banco de dados?');">
                             </form>
 
 

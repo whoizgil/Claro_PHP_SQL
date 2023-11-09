@@ -48,22 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($data_nascimento_format == $usuario['Data_Nascimento']) {
                 $_SESSION['2fa'] = true;
                 unset($_SESSION['pergunta']);
-                header("Location: index.php");
+                echo "<script>alert('Você logou com sucesso!'); window.location.href='index.php';</script>";
                 exit();
             } else {
                 session_destroy();
-                header("Location: login.php");
+                echo "<script>alert('Credenciais incorretas. Logue novamente.'); window.location.href='login.php';</script>";
                 exit();
             }
         }
     } elseif ($_POST['resposta'] == $perguntas[$pergunta_aleatoria]) {
         unset($_SESSION['pergunta']);
-        header("Location: index.php");
+        echo "<script>alert('Você logou com sucesso!'); window.location.href='index.php';</script>";
         $_SESSION['2fa'] = true;
         exit();
     } else {
         session_destroy();
-        header("Location: login.php");
+        echo "<script>alert('Credenciais incorretas. Logue novamente.'); window.location.href='login.php';</script>";
         exit();
     }
 }
