@@ -1,10 +1,10 @@
 <?php
 session_start();
-if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
-    header('location:erro_login.php');
+if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
+    header("Location: erro_login.php");
+    exit();
 }
 
-$logado = $_SESSION['login'];
 
 ?>
 <!DOCTYPE html>

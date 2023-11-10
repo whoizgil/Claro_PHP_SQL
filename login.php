@@ -19,7 +19,7 @@ include('banco_de_dados/conexaosql.php');
     <div class="div-logo">
       <a class="ancora-logo" href="index.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
     </div>
-    <form id="formulario" action="validacaosql.php" method="POST" onsubmit="return validarFormulario()">
+    <form id="formulario" autocomplete="off" action="validacaosql.php" method="POST" onsubmit="return validarFormulario()">
       <h1>Login</h1>
 
       <div class="campo-cadastro">
