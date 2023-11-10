@@ -46,11 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-$query = 'SELECT u.login, u.nome, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c"';
+$query = 'SELECT u.login, u.nome, u.Data_Nascimento, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c"';
 
 
 $stmt = $mysqli->query($query);
 
+function calcularIdade($dataNascimento)
+{
+    $dataNascimento = date_create($dataNascimento);
+    $hoje = date_create(date('Y-m-d'));
+    $idade = date_diff($dataNascimento, $hoje);
+    return $idade->format('%y');
+}
 ?>
 
 <!DOCTYPE html>
@@ -272,6 +279,7 @@ $stmt = $mysqli->query($query);
                 <tr>
                     <th>Login</th>
                     <th>Nome</th>
+                    <th>Idade</th>
                     <th>CPF</th>
                     <th>Telefone Fixo</th>
                     <th>Tipo</th>
@@ -284,6 +292,7 @@ $stmt = $mysqli->query($query);
                     <tr>
                         <td><?php echo htmlspecialchars($row['login']); ?></td>
                         <td><?php echo htmlspecialchars($row['nome']); ?></td>
+                        <td><?php echo calcularIdade($row['Data_Nascimento']); ?></td>
                         <td><?php echo htmlspecialchars($row['CPF']); ?></td>
                         <td><?php echo htmlspecialchars($row['tel_fixo']); ?></td>
                         <td><?php echo htmlspecialchars($row['tipo_desc']); ?></td>
