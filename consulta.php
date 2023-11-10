@@ -221,7 +221,7 @@ function calcularIdade($dataNascimento)
 
             .fl-table td,
             .fl-table th {
-                padding: 20px .625em .625em .625em;
+                padding: 20px 10.6em .625em .625em;
                 height: 60px;
                 vertical-align: middle;
                 box-sizing: border-box;
