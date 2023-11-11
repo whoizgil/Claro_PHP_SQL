@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="campo-cadastro">
-                    <input type="text" id="cpf" name="cpf" autocomplete="off" required="required" />
+                    <input type="text" id="cpf" name="cpf" autocomplete="off" required="required" oninput="formatarCPF(this)" maxlength="14" />
                     <span>CPF:</span>
                     <i></i>
                 </div>
@@ -46,13 +46,13 @@
 
             <fieldset>
                 <div class="campo-cadastro">
-                    <input type="tel" id="celular" name="celular" autocomplete="off" required="required" />
+                    <input type="tel" id="celular" name="celular" autocomplete="off" required="required" oninput="formatarCelular(this)" maxlength="14" />
                     <span>Celular:</span>
                     <i></i>
                 </div>
 
                 <div class="campo-cadastro">
-                    <input type="tel" id="tel_fixo" name="tel_fixo" autocomplete="off" required="required" />
+                    <input type="tel" id="tel_fixo" name="tel_fixo" autocomplete="off" required="required" oninput="formatarTelefoneFixo(this)" maxlength="13" />
                     <span>Telefone fixo:</span>
                     <i></i>
                 </div>
@@ -128,6 +128,23 @@
     </section>
 
     <script>
+        function formatarCPF(cpfCampo) {
+            let cpf = cpfCampo.value.replace(/\D/g, '');
+            cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            cpfCampo.value = cpf;
+        }
+
+        function formatarTelefoneFixo(telefoneFixoCampo) {
+            let telefoneFixo = telefoneFixoCampo.value.replace(/\D/g, '');
+            telefoneFixo = telefoneFixo.replace(/(\d{2})(\d{4})(\d{4})/, '($1)$2-$3');
+            telefoneFixoCampo.value = telefoneFixo;
+        }
+
+        function formatarCelular(celularCampo) {
+            let celular = celularCampo.value.replace(/\D/g, '');
+            celular = celular.replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3');
+            celularCampo.value = celular;
+        }
         document.addEventListener("DOMContentLoaded", function() {
             const formulario = document.getElementById("formulario");
             const senha = document.getElementById("senha");

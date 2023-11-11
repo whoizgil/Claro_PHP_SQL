@@ -1,13 +1,50 @@
 <?php
 include('banco_de_dados/conexaosql.php');
 
+function validarCPF($cpf)
+{
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
+
+    if (strlen($cpf) != 11) {
+        return false;
+    }
+
+
+    if (preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+
+    $soma = 0;
+    for ($i = 0; $i < 9; $i++) {
+        $soma += intval($cpf[$i]) * (10 - $i);
+    }
+    $resto = $soma % 11;
+    $digito1 = ($resto < 2) ? 0 : 11 - $resto;
+
+
+    $soma = 0;
+    for ($i = 0; $i < 10; $i++) {
+        $soma += intval($cpf[$i]) * (11 - $i);
+    }
+    $resto = $soma % 11;
+    $digito2 = ($resto < 2) ? 0 : 11 - $resto;
+
+    if ($cpf[9] != $digito1 || $cpf[10] != $digito2) {
+        return false;
+    }
+
+    return true;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
     $email = $_POST["email"];
     $nome_materno = $_POST["nome_materno"];
-    $cpf = $_POST["cpf"];
-    $celular = $_POST["celular"];
-    $tel_fixo = $_POST["tel_fixo"];
+    $cpf = preg_replace('/[^0-9]/', '', $_POST["cpf"]);
+    $celular = preg_replace('/[^0-9]/', '', $_POST["celular"]);
+    $tel_fixo = preg_replace('/[^0-9]/', '', $_POST["tel_fixo"]);
     $endereco = $_POST["endereco"];
     $login = $_POST["login"];
     $dat_nascimento = $_POST["dat_nascimento"];
@@ -25,6 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($verificar_cpf_stmt->num_rows > 0) {
         echo "<script>
             alert('CPF já cadastrado. Por favor, verifique seus dados.');
+            window.location.href = 'cad.php';
+        </script>";
+        exit();
+    }
+
+    if (!validarCPF($cpf)) {
+        echo "<script>
+            alert('CPF inválido. Por favor, verifique seus dados.');
             window.location.href = 'cad.php';
         </script>";
         exit();

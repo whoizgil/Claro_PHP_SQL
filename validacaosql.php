@@ -24,9 +24,8 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
 
 
         if ($quantidade == 1) {
-            $cadastro = $sql_query->fetch_assoc();
 
-            if ($cadastro['Statuses'] == 2) {
+            if ($usuario['Statuses'] == 2) {
                 header("Location: erro_status_off.php");
             } else {
                 $sql_tipo = "SELECT tipo FROM usuario WHERE login = '$login'";
