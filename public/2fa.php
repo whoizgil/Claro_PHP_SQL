@@ -1,20 +1,20 @@
 <?php
 session_start();
-include('banco_de_dados/conexaosql.php');
+include('../config/database/conexaosql.php');
 
 if (!isset($_SESSION['login'])) {
-    header("Location: login.php");
+    header("Location: ../index.php");
     exit();
 }
 
 if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
-    header("Location: index.php");
+    header("Location: main.php");
     exit();
 }
 
 if ($_SESSION['tipo'] == 'm') {
     $_SESSION['2fa'] = true;
-    header('location:index.php');
+    header('location: main.php');
     exit();
 }
 
@@ -48,22 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($data_nascimento_format == $usuario['Data_Nascimento']) {
                 $_SESSION['2fa'] = true;
                 unset($_SESSION['pergunta']);
-                echo "<script>alert('Você logou com sucesso!'); window.location.href='index.php';</script>";
+                echo "<script>alert('Você logou com sucesso!'); window.location.href='main.php';</script>";
                 exit();
             } else {
                 session_destroy();
-                echo "<script>alert('Credenciais incorretas. Logue novamente.'); window.location.href='login.php';</script>";
+                echo "<script>alert('Credenciais incorretas. Logue novamente.'); window.location.href='../index.php';</script>";
                 exit();
             }
         }
     } elseif ($_POST['resposta'] == $perguntas[$pergunta_aleatoria]) {
         unset($_SESSION['pergunta']);
-        echo "<script>alert('Você logou com sucesso!'); window.location.href='index.php';</script>";
+        echo "<script>alert('Você logou com sucesso!'); window.location.href='main.php';</script>";
         $_SESSION['2fa'] = true;
         exit();
     } else {
         session_destroy();
-        echo "<script>alert('Credenciais incorretas. Logue novamente.'); window.location.href='login.php';</script>";
+        echo "<script>alert('Credenciais incorretas. Logue novamente.'); window.location.href='../index.php';</script>";
         exit();
     }
 }
@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style-login-cad.css" />
-    <link rel="stylesheet" href="2fa_style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style-login-cad.css" />
+    <link rel="stylesheet" href="../assets/css/2fa_style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <script src="" defer></script>
     <title>2FA - Verificação de Duas Etapas</title>
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container-2fa">
         <div class="div-logo-2fa">
-            <a class="ancora-logo-2fa" href="index.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
+            <a class="ancora-logo-2fa" href="main.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
         </div>
         <h1>Verificação de Duas Etapas</h1>
         <p class="pergunta-2fa">Pergunta: <?php echo $pergunta_aleatoria; ?></p>

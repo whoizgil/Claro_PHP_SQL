@@ -1,5 +1,5 @@
 <?php
-include('banco_de_dados/conexaosql.php');
+include('conexaosql.php');
 
 if (isset($_POST['login']) && isset($_POST['senha'])) {
     if (empty($_POST['login'])) {
@@ -26,7 +26,7 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
         if ($quantidade == 1) {
 
             if ($usuario['Statuses'] == 2) {
-                header("Location: erro_status_off.php");
+                header("Location: ../../assets/error/erro_status_off.php");
             } else {
                 $sql_tipo = "SELECT tipo FROM usuario WHERE login = '$login'";
                 $result_tipo = $mysqli->query($sql_tipo);
@@ -40,14 +40,15 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
                     $_SESSION['login'] = $login;
                     $_SESSION['tipo'] = $usuario['Tipo'];
                     $_SESSION['CPF'] = $usuario['CPF'];
-                    header("Location: 2fa.php");
+                    header("Location: ../../public/2fa.php");
                 } else {
-                    header("Location: erro_login.php");
+                    header("Location: ../../assets/error/erro_login.php");
                 }
             }
             exit();
         } else {
-            header("Location: erro_login.php");
+            header("Location: ../../assets/error/erro_login.php");
+            exit();
         }
     }
 }

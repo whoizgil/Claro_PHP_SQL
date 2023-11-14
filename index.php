@@ -1,77 +1,118 @@
 <?php
-session_start();
-if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
-  header("Location: erro_login.php");
+include('config/database/conexaosql.php');
+
+if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
+  header("Location: public/main.php");
   exit();
 }
 
 ?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style_teste.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
-  <title>Tela Inicial</title>
-  <style>
-    * {
-      font-family: 'Onest', sans-seri
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background-color: #cccccc;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: #CE2D2D;
-
-    }
-  </style>
-
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-login-cad.css" />
+  <script src="" defer></script>
+  <title>Login</title>
 </head>
 
 <body>
-  <!--NavBar Início-->
-  <div class="navbar">
-    <?php include_once('navbar_main.php'); ?>
-  </div>
-  <!--NavBar Fim-->
-  </div>
-  <!--Wave Início-->
-  <div class="header">
-    <div class="inner-header flex">
-      <a href="index.php"><img style="
-              display: block;
-              margin: auto;
-              transition: background-color 300ms;
-            " src="https://seeklogo.com/images/C/Claro-logo-73D218C14E-seeklogo.com.png" /></a>
+  <section class="container-login">
+    <div class="div-logo">
+      <a class="ancora-logo" href="./public/main.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
     </div>
-    <div class="div-waves">
-      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="#f40d0d" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="#de0d0d" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="#e33f2c" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-        </g>
-      </svg>
-    </div>
-  </div>
-  <!--Wave Fim-->
+    <form id="formulario" autocomplete="off" action="./config/database/validacao_login.php" method="POST" onsubmit="return validarFormulario()">
+      <h1>Login</h1>
 
-  <div class="footer">
-    <?php include_once('footer.php'); ?>
-  </div>
-  <script src="main-script.js"></script>
+      <div class="campo-cadastro">
+        <input type="text" name="login" id="login" required="required" minlength="6" maxlength="6" />
+        <span>Login (6 caracteres):</span>
+        <i></i>
+      </div>
+
+      <div class="campo-cadastro">
+        <input type="password" name="senha" id="senha" required="required" minlength="8" maxlength="8" />
+        <span>Senha (8 caracteres):</span>
+        <i></i>
+      </div>
+
+      <div id="esqsenha">
+        <label for="tipoUsuario">Tipo de Usuário:</label>
+        <select name="tipousuario" id="tipoUsuario" name="tipoUsuario" style="border-radius: 10px; background-color: #cecece;" required>
+          <option value="m">Master</option>
+          <option value="c">Comum</option>
+        </select>
+      </div>
+
+      <input class="botao-login" type="submit" value="Login" />
+      <input class="botao-limpar" type="button" value="Limpar Tela" onclick="limparCampos()" />
+
+      <div class="links-login" id="cadastro">
+        <p>Não tem uma conta? <a href="./public/cadastro.php">Cadastre-se</a></p>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    function validarFormulario() {
+      const login = document.getElementById("login").value;
+      const senha = document.getElementById("senha").value;
+
+      // Requisito 1
+      if (login.length !== 6 || senha.length !== 8) {
+        alert(
+          "O login deve ter exatamente 6 caracteres e a senha deve ter exatamente 8 caracteres."
+        );
+        return false;
+      }
+
+      return true;
+    }
+
+    // Pré-formatação para Login
+    const loginInput = document.getElementById("login");
+    loginInput.addEventListener("input", () => {
+      const formattedLogin = formatLogin(loginInput.value);
+      loginInput.value = formattedLogin;
+    });
+
+    function formatLogin(login) {
+      // Apenas permite caracteres alfabéticos e limita a 6 caracteres
+      return login.replace(/[^a-zA-Z]/g, "").slice(0, 6);
+    }
+
+    function limparCampos() {
+      const inputs = document.querySelectorAll("input, textarea, select");
+      inputs.forEach((input) => {
+        if (input.type !== "submit" && input.type !== "button") {
+          input.value = "";
+
+          if (input.type === "radio" || input.type === "checkbox") {
+            input.checked = false;
+          }
+        }
+      });
+    }
+
+    function formatInput(id) {
+      const input = document.getElementById(id);
+      if (input) {
+        input.addEventListener("input", () => {
+          const formattedValue = formatValue(input.value);
+          input.value = formattedValue;
+        });
+      }
+    }
+
+    function formatValue(value) {
+      return value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 8);
+    }
+
+    formatInput("senha");
+  </script>
 </body>
 
 </html>

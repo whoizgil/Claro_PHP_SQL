@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style-login-cad.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style-login-cad.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <script src="" defer></script>
     <title>Erro de Autenticação</title>
@@ -52,11 +52,11 @@
 <body>
     <section class="container-login">
         <div class="div-logo">
-            <a class="ancora-logo" href="index.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
+            <a class="ancora-logo" href="../../public/main.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
         </div>
         <h1 class="titulo-erro">Erro de Autenticação</h1>
         <p class="mensagem-erro">Ocorreu um erro de autenticação. Verifique suas credenciais e tente novamente.</p>
-        <a class="botao-voltar" href="login.php">Login</a>
+        <a class="botao-voltar" href="../../index.php">Login</a>
     </section>
 </body>
 

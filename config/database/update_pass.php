@@ -1,14 +1,14 @@
 <?php
 session_start();
-include('banco_de_dados/conexaosql.php');
+include('conexaosql.php');
 
 if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
-  header("Location: erro_login.php");
+  header("Location: ../../assets/error/erro_login.php");
   exit();
 }
 
 if ($_SESSION['tipo'] == 'm') {
-  header('location:erro_voltar.php');
+  header('location:../../assets/error/erro_voltar.php');
   exit();
 }
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $sql = "UPDATE usuario SET Senha='$nsenha' WHERE Login='" . $_SESSION['login'] . "'";
 
       if (mysqli_query($mysqli, $sql)) {
-        echo "<script>alert('Senha alterada com sucesso!'); window.location.href='index.php';</script>";
+        echo "<script>alert('Senha alterada com sucesso!'); window.location.href='../../public/main.php';</script>";
         exit();
       } else {
         echo "Erro ao alterar a senha: " . mysqli_error($mysqli);
@@ -40,14 +40,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="style-login-cad.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style-login-cad.css" />
   <title>Alteração</title>
 </head>
 
 <body class="recsenha-html">
   <section class="container-login">
     <div class="div-logo">
-      <a class="ancora-logo" href="index.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo telecall" /></a>
+      <a class="ancora-logo" href="../../public/main.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo telecall" /></a>
     </div>
     <form id="formulario" action="" method="POST">
       <h1>Alterar Senha</h1>
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input class="botao-limpar" type="button" value="Limpar Tela" onclick="" />
 
       <div class="links-login" id="cadastro">
-        <p>Não tem uma conta? <a href="cad.php">Cadastre-se</a></p>
+        <p>Não tem uma conta? <a href="../../public/cadastro.php">Cadastre-se</a></p>
       </div>
     </form>
   </section>

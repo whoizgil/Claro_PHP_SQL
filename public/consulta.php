@@ -1,14 +1,15 @@
 <?php
-include('banco_de_dados/conexaosql.php');
+include('../config/database/conexaosql.php');
 session_start();
 
 if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
-    header("Location: erro_login.php");
+    header("Location: ../assets/error/erro_login.php");
     exit();
 }
 
 if ($_SESSION['tipo'] == 'c') {
-    header('location:erro_voltar.php');
+    header('location:../assets/error/erro_voltar.php');
+    exit();
 }
 
 
@@ -67,7 +68,7 @@ function calcularIdade($dataNascimento)
     <title>Usuários</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <style>
         * {
@@ -268,7 +269,7 @@ function calcularIdade($dataNascimento)
 
 <body>
     <div class="navbar">
-        <?php include_once('navbar_main.php'); ?>
+        <?php include_once('../assets/elements/navbar.php'); ?>
     </div>
     <div class="searchbar">
         <input type="text" id="searchInput" onkeyup="searchUsers()" placeholder="Pesquisar usuários">
@@ -322,7 +323,7 @@ function calcularIdade($dataNascimento)
     </div>
 
     <div class="footer" style="margin-top: 265px;">
-        <?php include_once('footer.php'); ?>
+        <?php include_once('../assets/elements/footer.php'); ?>
     </div>
     <script>
         function searchUsers() {

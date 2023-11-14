@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
-  header("Location: erro_login.php");
+  header("Location: ../assets/error/erro_login.php");
   exit();
 }
 
@@ -14,7 +14,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sobre Nós</title>
-  <link rel="stylesheet" href="style_teste.css" />
+  <link rel="stylesheet" href="../assets/css/style_main.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
   <style>
     * {
@@ -121,26 +121,26 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
 <body>
   <!--NavBar Início-->
   <div class="navbar">
-    <?php include_once('navbar_main.php'); ?>
+    <?php include_once('../assets/elements/navbar.php'); ?>
   </div>
   <!--NavBar Fim-->
   <div class="container">
     <div class="card" id="card1">
-      <img src="assets/morgana_projeto.jpg" alt="Foto 1">
+      <img src="../assets/img/morgana_projeto.jpg" alt="Foto 1">
       <div class="info-card">
         <h3>Morgana</h3>
         <p>Morgana é a visionária por trás da Claro, fundadora da empresa que transformou a maneira como nos conectamos. Com um olhar voltado para o futuro, ela acreditava que a comunicação poderia ser mais do que apenas uma troca de palavras - poderia ser uma ponte para unir pessoas. Sua paixão pela inovação tecnológica e sua visão empreendedora foram os pilares que deram vida à Claro, uma empresa que continua a moldar o mundo da telecomunicação.</p>
       </div>
     </div>
     <div class="card" id="card2">
-      <img c src="assets/syndra_projeto.jpg" alt="Foto 2">
+      <img c src="../assets/img/syndra_projeto.jpg" alt="Foto 2">
       <div class="info-card">
         <h3>Syndra</h3>
         <p>Syndra, a mulher à frente da Claro, assume a responsabilidade de liderar uma das maiores empresas de telecomunicações do mundo. Com habilidades notáveis de gestão e um profundo conhecimento do setor, ela guia a equipe da Claro rumo a uma trajetória de sucesso. A visão de Syndra é clara: proporcionar uma conectividade superior e inovações revolucionárias que atendam às necessidades em constante evolução de nossos clientes.</p>
       </div>
     </div>
     <div class="card" id="card3">
-      <img src="assets/evelynn_projeto.jpg" alt="Foto 3">
+      <img src="../assets/img/evelynn_projeto.jpg" alt="Foto 3">
       <div class="info-card">
         <h3>Evelynn</h3>
         <p>Evelynn é uma peça fundamental na equipe de desenvolvimento da Claro. Sua expertise técnica e criatividade são elementos cruciais para o aprimoramento contínuo dos serviços oferecidos pela empresa. Ela é apaixonada por desafios e está sempre buscando maneiras de melhorar a experiência dos usuários, garantindo que a Claro permaneça na vanguarda da inovação e ofereça soluções de alta qualidade para seus clientes.</p>
@@ -149,7 +149,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
   </div>
 
   <div class="footer">
-    <?php include_once('footer.php'); ?>
+    <?php include_once('../assets/elements/footer.php'); ?>
   </div>
 </body>
 

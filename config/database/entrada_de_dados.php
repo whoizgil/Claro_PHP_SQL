@@ -1,5 +1,5 @@
 <?php
-include('banco_de_dados/conexaosql.php');
+include('conexaosql.php');
 
 function validarCPF($cpf)
 {
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($verificar_cpf_stmt->num_rows > 0) {
         echo "<script>
             alert('CPF já cadastrado. Por favor, verifique seus dados.');
-            window.location.href = 'cad.php';
+            window.location.href = '../../public/cadastro.php';
         </script>";
         exit();
     }
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!validarCPF($cpf)) {
         echo "<script>
             alert('CPF inválido. Por favor, verifique seus dados.');
-            window.location.href = 'cad.php';
+            window.location.href = '../../public/cadastro.php';
         </script>";
         exit();
     }
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($verificar_login_stmt->num_rows > 0) {
         echo "<script>
             alert('Login já está sendo utilizado. Por favor, escolha outro.');
-            window.location.href = 'cad.php';
+            window.location.href = '../../public/cadastro.php';
         </script>";
         exit();
     }
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $mysqli->prepare($sql);
 
     if ($stmt === false) {
-        header("Location: error.php?message=" . $mysqli->error);
+        header("Location: ../../error/erro_login.php?message=" . $mysqli->error);
         exit();
     }
 
@@ -105,10 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
 
-        echo "<script>alert('Usuário cadastrado com sucesso!'); window.location.href='login.php';</script>";
+        echo "<script>alert('Usuário cadastrado com sucesso!'); window.location.href='../../index.php';</script>";
         exit();
     } else {
-        header("Location: erro_login.php?message=" . $stmt->error);
+        header("Location: ../../error/erro_login.php?message=" . $stmt->error);
         exit();
     }
 

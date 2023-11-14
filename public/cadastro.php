@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style-login-cad.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style-login-cad.css" />
     <script src="script.js" defer></script>
     <title>Cadastro</title>
 </head>
@@ -12,9 +12,9 @@
 <body>
     <section class="container" style="height: 690px;">
         <div class="div-logo">
-            <a class="ancora-logo" href="index.php"><img class="logo" src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
+            <a class="ancora-logo" href="main.php"><img class="logo" src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
         </div>
-        <form id="formulario" action="entrada_de_dados.php" method="post">
+        <form id="formulario" action="../config/database/entrada_de_dados.php" method="post">
             <h1>Cadastro</h1>
             <fieldset>
                 <div class="campo-cadastro">
@@ -119,7 +119,7 @@
             </fieldset>
 
             <div class="links">
-                <p>Já possui uma conta? <a href="login.php">Login</a></p>
+                <p>Já possui uma conta? <a href="../index.php">Login</a></p>
             </div>
 
             <input class="botao-cadastro" type="submit" value="Cadastrar" />

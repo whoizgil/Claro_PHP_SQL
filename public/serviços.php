@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !== true) {
-    header("Location: erro_login.php");
+    header("Location: ../assets/error/erro_login.php");
     exit();
 }
 
@@ -14,7 +14,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços - Claro</title>
-    <link rel="stylesheet" href="style_teste.css" />
+    <link rel="stylesheet" href="../assets/css/style_main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <title>Serviços</title>
     <style>
@@ -186,7 +186,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
 <body>
     <!--NavBar Início-->
     <div class="navbar">
-        <?php include_once('navbar_main.php'); ?>
+        <?php include_once('../assets/elements/navbar.php'); ?>
     </div>
     <!--NavBar Fim-->
 
@@ -261,7 +261,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
 
 
     <div class="footer">
-        <?php include_once('footer.php'); ?>
+        <?php include_once('../assets/elements/footer.php'); ?>
     </div>
 </body>
 
