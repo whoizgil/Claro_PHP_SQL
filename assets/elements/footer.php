@@ -105,17 +105,17 @@
         </ul>
         <ul class="menu">
             <?php if ($_SESSION['tipo'] == 'm') {
-                echo '<li class="menu__item"><a class="menu__link" href="./public/consulta.php">Consulta</a></li>';
+                echo '<li class="menu__item"><a class="menu__link" href="consulta.php">Consulta</a></li>';
             } ?>
             <li class="menu__item"><a class="menu__link" href="#">Modelo</a></li>
-            <li class="menu__item"><a class="menu__link" href="./public/serviços.php">Serviços</a></li>
-            <li class="menu__item"><a class="menu__link" href=./public/about.php">Sobre nós</a></li>
+            <li class="menu__item"><a class="menu__link" href="serviços.php">Serviços</a></li>
+            <li class="menu__item"><a class="menu__link" href="sobre.php">Sobre nós</a></li>
 
         </ul>
         <?php if ($_SESSION['tipo'] == 'c') {
-            echo '<a class="logout" href="./public/config/database/update_pass.php">Alterar sua senha</a>';
+            echo '<a class="logout" href="../config/database/update_pass.php">Alterar sua senha</a>';
         } ?>
-        <a class="logout" href="./public/config/database/logout.php">Sair da sua conta</a>
+        <a class="logout" href="../config/database/logout.php">Sair da sua conta</a>
         <p>&copy;2023 Claro | Todos Os Direitos Reservados</p>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

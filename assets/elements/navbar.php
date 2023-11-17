@@ -244,8 +244,8 @@
         echo '<li><a href="../public/consulta.php">CONSULTA</a></li>';
       } ?>
       <li><a href="#">MODELO</a></li>
-      <li><a href="../public/sobre.php">SOBRE NÓS</a></li>
-      <li><a href="../public/serviços.php">SERVIÇOS</a></li>
+      <li><a href="sobre.php">SOBRE NÓS</a></li>
+      <li><a href="serviços.php">SERVIÇOS</a></li>
 
       <li>
         <?php

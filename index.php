@@ -1,5 +1,6 @@
 <?php
 include('config/database/conexaosql.php');
+session_start();
 
 if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
   header("Location: public/main.php");
