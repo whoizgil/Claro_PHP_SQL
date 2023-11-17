@@ -5,10 +5,7 @@
 * {
   margin: 0;
   padding: 0;
-  color: #f2f5f7;
-  font-family: sans-serif;
   letter-spacing: 1px;
-  font-weight: 300;
 }
 nav {
   height: 4.5rem;
@@ -83,7 +80,7 @@ nav {
 }
 
 /*Stying for small screens*/
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
   nav-menu {
     position: fixed;
     z-index: 3;
@@ -262,6 +259,8 @@ p {
   h1 {
     font-size: 24px;
   }
+
+
 }
 
 .header,
@@ -271,4 +270,26 @@ p {
 
 .inner-header img {
   padding-top: 70px;
+}
+
+.container-main-text {
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+  justify-content: space-evenly;
+  align-items: center; }
+
+.texto-main {
+  font-size: 200%;
+}
+
+.container-main-text .texto-main a {
+  color: #931f1f; 
+  text-decoration: none;
+}
+
+@media (max-width: 968px) {
+  .texto-main {
+    font-size: 150%;
+  }
 }

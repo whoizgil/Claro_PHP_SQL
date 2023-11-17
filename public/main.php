@@ -68,6 +68,17 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
   </div>
   <!--Wave Fim-->
 
+  <div class="container-main-text">
+    <?php if ($_SESSION['tipo'] == "m") : ?>
+      <p class="texto-main">Bem-Vindo(a), <?php echo $_SESSION['nome'] ?>! </p>
+      <p class="texto-main">Além de acessar nossos <a href="serviços.php">serviços</a>, você também pode acessar a tela de <a href="consulta.php">consulta</a>. </p>
+    <?php else : ?>
+      <p class="texto-main">Bem-Vindo(a), <?php echo $_SESSION['nome'] ?>! </p>
+      <p class="texto-main">Você pode acessar nossos <a href="serviços.php">serviços</a>! Aproveite as promoções e navegue em nosso site!</p>
+    <?php endif; ?>
+
+  </div>
+
   <div class="footer">
     <?php include_once('../assets/elements/footer.php'); ?>
   </div>
