@@ -26,16 +26,16 @@ if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
       <a class="ancora-logo" href="./public/main.php"><img src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
     </div>
     <form id="formulario" autocomplete="off" action="./config/database/validacao_login.php" method="POST" onsubmit="return validarFormulario()">
-      <h1>Login</h1>
+      <h1 id="myH1">Login</h1>
 
       <div class="campo-cadastro">
-        <input type="text" name="login" id="login" required="required" minlength="6" maxlength="6" />
+        <input type="text" name="login" id="login" required="required" minlength="6" maxlength="6" onfocus="hideH1()" onblur="showH1()" />
         <span>Login (6 caracteres):</span>
         <i></i>
       </div>
 
       <div class="campo-cadastro">
-        <input type="password" name="senha" id="senha" required="required" minlength="8" maxlength="8" />
+        <input type="password" name="senha" id="senha" required="required" minlength="8" maxlength="8" onfocus="hideH1()" onblur="showH1()" />
         <span>Senha (8 caracteres):</span>
         <i></i>
       </div>
@@ -113,6 +113,16 @@ if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
     }
 
     formatInput("senha");
+
+    function hideH1() {
+      document.getElementById('myH1').classList.add('hidden');
+      document.querySelector('.container-login').style.height = '355px';
+    }
+
+    function showH1() {
+      document.getElementById('myH1').classList.remove('hidden');
+      document.querySelector('.container-login').style.height = '';
+    }
   </script>
 </body>
 

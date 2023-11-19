@@ -32,6 +32,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
       background-color: #CE2D2D;
 
     }
+
   </style>
 
 </head>
@@ -76,7 +77,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
       <p class="texto-main">Bem-Vindo(a), <?php echo $_SESSION['nome'] ?>! </p>
       <p class="texto-main">Você pode acessar nossos <a href="serviços.php">serviços</a>! Aproveite as promoções e navegue em nosso site!</p>
     <?php endif; ?>
-
+    <p class="texto-main">E se quiser ver como está o modelo ER, clique <a href="modelo.php">aqui</a>.</p>
   </div>
 
   <div class="footer">

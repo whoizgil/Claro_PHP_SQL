@@ -120,9 +120,12 @@
     transition: 0.5s;
   }
 
-  .campo-cadastro input:valid ~ span,
+  h1.hidden {
+    display: none;
+   }
+
   .campo-cadastro input:focus ~ span {
-    color: #cecece;
+    color: #d22323;
     font-size: 0.75em;
     transform: translateY(-30px);
     font-size: 1em;
@@ -407,15 +410,18 @@
     transition: 0.5s;
   }
 
-  .campo-cadastro input:valid ~ span,
-  .campo-cadastro input:valid ~ span {
-    color: #fff;
+  .campo-cadastro input:focus ~ span{
+    color: #d22323;
     font-size: 0.75em;
     transform: translateY(-30px);
     font-size: 1em;
     letter-spacing: 0.05em;
     transition: 0.5s;
   }
+
+   h1.hidden {
+    display: none;
+   }
 
   .campo-cadastro i {
     position: absolute;
@@ -522,6 +528,7 @@
     border-radius: 15px;
     background: #cecece;
     box-shadow: 0px 0px 10px 3px #0000004b;
+    transition: height 0.5s;
   }
 
   .container-login form {
