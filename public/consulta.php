@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-$query = 'SELECT u.login, u.nome, u.Data_Nascimento, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c"';
+$query = 'SELECT u.login, u.nome, u.Data_Nascimento, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c" ORDER BY u.nome';
 
 
 $stmt = $mysqli->query($query);
@@ -325,9 +325,6 @@ function calcularIdade($dataNascimento)
                                 <input type="hidden" name="CPF" value="<?php echo htmlspecialchars($row['CPF']); ?>">
                                 <input class="myButton" type="submit" name="deleteUser" value="Deletar" onclick="return confirm('Você realmente deseja deletar o usuário ' + '<?php echo htmlspecialchars($row['nome']); ?>' + ' do banco de dados?');">
                             </form>
-
-
-
                         </td>
                     </tr>
                 <?php endwhile; ?>
