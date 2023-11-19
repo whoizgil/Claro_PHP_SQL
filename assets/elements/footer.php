@@ -107,7 +107,7 @@
             <?php if ($_SESSION['tipo'] == 'm') {
                 echo '<li class="menu__item"><a class="menu__link" href="consulta.php">Consulta</a></li>';
             } ?>
-            <li class="menu__item"><a class="menu__link" href="#">Modelo</a></li>
+            <li class="menu__item"><a class="menu__link" href="modelo.php">Modelo</a></li>
             <li class="menu__item"><a class="menu__link" href="serviços.php">Serviços</a></li>
             <li class="menu__item"><a class="menu__link" href="sobre.php">Sobre nós</a></li>
 

@@ -243,7 +243,7 @@
       <?php if ($_SESSION['tipo'] == 'm') {
         echo '<li><a href="../public/consulta.php">CONSULTA</a></li>';
       } ?>
-      <li><a href="#">MODELO</a></li>
+      <li><a href="modelo.php">MODELO</a></li>
       <li><a href="sobre.php">SOBRE NÓS</a></li>
       <li><a href="serviços.php">SERVIÇOS</a></li>
 
