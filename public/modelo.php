@@ -16,6 +16,19 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['2fa']) || $_SESSION['2fa'] !
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <title>Modelo</title>
     <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #cccccc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #CE2D2D;
+
+        }
+
         * {
             font-family: 'Onest', sans-serif;
         }

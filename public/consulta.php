@@ -71,6 +71,19 @@ function calcularIdade($dataNascimento)
     <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Onest">
     <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #cccccc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #CE2D2D;
+
+        }
+
         * {
             font-family: 'Onest', sans-serif;
         }
