@@ -114,15 +114,32 @@ if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
 
     formatInput("senha");
 
+
     function hideH1() {
       document.getElementById('myH1').classList.add('hidden');
       document.querySelector('.container-login').style.height = '355px';
     }
 
     function showH1() {
-      document.getElementById('myH1').classList.remove('hidden');
-      document.querySelector('.container-login').style.height = '';
+      var loginInput = document.getElementById('login');
+      var senhaInput = document.getElementById('senha');
+
+      if (loginInput.value !== '') {
+        loginInput.classList.add('has-content');
+      }
+
+      if (senhaInput.value !== '') {
+        senhaInput.classList.add('has-content');
+      }
+
+      if (loginInput.value === '' && senhaInput.value === '') {
+        document.getElementById('myH1').classList.remove('hidden');
+        document.querySelector('.container-login').style.height = '';
+      }
     }
+
+    document.getElementById('login').addEventListener('blur', showH1);
+    document.getElementById('senha').addEventListener('blur', showH1);
   </script>
 </body>
 

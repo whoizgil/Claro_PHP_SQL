@@ -122,7 +122,7 @@
 
       .nav-links-menu.open {
         clip-path: circle(1000px at 90% -10%);
-        -webkit-clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1200px at 90% -10%);
         pointer-events: all;
       }
 

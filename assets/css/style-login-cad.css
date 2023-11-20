@@ -417,7 +417,19 @@
     font-size: 1em;
     letter-spacing: 0.05em;
     transition: 0.5s;
+    
   }
+
+  .campo-cadastro input.has-content ~ span {
+    color: #d22323;
+    font-size: 0.75em;
+    transform: translateY(-30px);
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+  }
+  
+  
 
    h1.hidden {
     display: none;
