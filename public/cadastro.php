@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <section class="container" style="height: 690px;">
+    <section class="container">
         <div class="div-logo">
             <a class="ancora-logo" href="main.php"><img class="logo" src="https://es.logodownload.org/wp-content/uploads/2018/12/claro-logo-1-11-768x288.png" alt="logo claro" /></a>
         </div>
@@ -156,6 +156,27 @@
                     alert("As senhas não coincidem. Por favor, verifique.");
                 }
             });
+        });
+
+        function showH1() {
+            var campos = ['nome', 'email', 'nome_materno', 'cpf', 'celular', 'tel_fixo', 'endereco', 'login', 'senha', 'conf_senha', 'cep'];
+
+            campos.forEach(function(campoId) {
+                var campoInput = document.getElementById(campoId);
+
+                if (campoInput.value !== '') {
+                    campoInput.classList.add('has-content');
+                }
+            });
+
+            var inputsSemConteudo = campos.every(function(campoId) {
+                return document.getElementById(campoId).value === '';
+            });
+        }
+
+        var campos = ['nome', 'email', 'nome_materno', 'cpf', 'celular', 'tel_fixo', 'endereco', 'login', 'senha', 'conf_senha', 'cep'];
+        campos.forEach(function(campoId) {
+            document.getElementById(campoId).addEventListener('blur', showH1);
         });
     </script>
 </body>

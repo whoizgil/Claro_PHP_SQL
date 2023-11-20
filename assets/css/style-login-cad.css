@@ -124,13 +124,20 @@
     display: none;
    }
 
-  .campo-cadastro input:focus ~ span {
+   .campo-cadastro input:focus ~ span{
     color: #d22323;
     font-size: 0.75em;
     transform: translateY(-30px);
     font-size: 1em;
     letter-spacing: 0.05em;
     transition: 0.5s;
+    
+  }
+
+  .campo-cadastro input.has-content ~ span {
+    color: #d22323;
+    font-size: 0.75em;
+    transform: translateY(-30px);
   }
 
   .campo-cadastro i {
@@ -379,6 +386,7 @@
     font-size: 24px;
     text-align: center;
     margin-top: 12px;
+    padding-right: 10px;
   }
 
   .campo-cadastro {
@@ -424,9 +432,6 @@
     color: #d22323;
     font-size: 0.75em;
     transform: translateY(-30px);
-    font-size: 1em;
-    letter-spacing: 0.05em;
-    transition: 0.5s;
   }
   
   
@@ -557,7 +562,6 @@
     font-size: 24px;
     text-align: center;
     padding-top: 12px;
-    margin-bottom: -15px;
   }
 
   .links-login {
