@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
+    header("Location: public/main.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
