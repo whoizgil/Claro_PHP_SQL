@@ -30,35 +30,9 @@ if ($stmt) {
         $options->set('isPhpEnabled', true);
         $dompdf = new Dompdf($options);
 
-        $html =
-            '<h1>Lista de Usuários do Sistema</h1>' .
-            '<table class="fl-table">' .
-            '<thead>' .
-            '<tr>' .
-            '<th>Login</th>' .
-            '<th>Nome</th>' .
-            '<th>Idade</th>' .
-            '<th>CPF</th>' .
-            '<th>Telefone Fixo</th>' .
-            '<th>Tipo</th>' .
-            '<th>Status</th>' .
-            '</tr>' .
-            '</thead>' .
-            '<tbody>';
+        $html = $_POST['tabela'];
 
-        while ($row = $stmt->fetch_assoc()) {
-            $html .= '<tr>' .
-                '<td>' . htmlspecialchars($row['login']) . '</td>' .
-                '<td>' . htmlspecialchars($row['nome']) . '</td>' .
-                '<td>' . calcularIdade($row['Data_Nascimento']) . '</td>' .
-                '<td>' . htmlspecialchars($row['CPF']) . '</td>' .
-                '<td>' . htmlspecialchars($row['tel_fixo']) . '</td>' .
-                '<td>' . htmlspecialchars($row['tipo_desc']) . '</td>' .
-                '<td>' . htmlspecialchars($row['statuses_desc']) . '</td>' .
-                '</tr>';
-        }
-
-        $html .= '</tbody></table>';
+        $html = preg_replace('/<input[^>]+>/', '', $html);
 
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
@@ -73,6 +47,8 @@ if ($stmt) {
         echo $output;
         exit();
     }
+
+
 
 
 
@@ -466,10 +442,31 @@ function calcularIdade($dataNascimento)
 
         $(document).ready(function() {
             $('form').submit(function(e) {
-                var tabelaClone = $('.fl-table').clone();
-                tabelaClone.find('th:last, td:last').remove();
+                var tabelaHtml = '<h1>Lista de Usuários do Sistema</h1>' +
+                    '<table class="fl-table">' +
+                    '<thead>' +
+                    '<tr>' +
+                    '<th>Login</th>' +
+                    '<th>Nome</th>' +
+                    '<th>Idade</th>' +
+                    '<th>CPF</th>' +
+                    '<th>Telefone Fixo</th>' +
+                    '<th>Tipo</th>' +
+                    '<th>Status</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
 
-                var tabelaHtml = tabelaClone.html();
+                $('.fl-table tbody tr:visible').each(function(index, row) {
+                    var columns = $(row).find('td:lt(7)').map(function() {
+                        return $(this).text().replace(/\n/g, '<br><br><br><br><br>'); // Adicione 5 quebras de linha
+                    }).get();
+
+                    tabelaHtml += '<tr><td>' + columns.join('</td><td>') + '</td></tr>';
+                });
+
+                tabelaHtml += '</tbody></table>';
+
                 $('#tabela').val(tabelaHtml);
             });
         });
