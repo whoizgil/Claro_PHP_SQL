@@ -459,7 +459,7 @@ function calcularIdade($dataNascimento)
 
                 $('.fl-table tbody tr:visible').each(function(index, row) {
                     var columns = $(row).find('td:lt(7)').map(function() {
-                        return $(this).text().replace(/\n/g, '<br><br><br><br><br>'); // Adicione 5 quebras de linha
+                        return $(this).text().replace(/\n/g, '<br><br><br><br><br>'); 
                     }).get();
 
                     tabelaHtml += '<tr><td>' + columns.join('</td><td>') + '</td></tr>';
