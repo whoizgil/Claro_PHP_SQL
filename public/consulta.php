@@ -18,7 +18,7 @@ if ($_SESSION['tipo'] == 'c') {
     exit();
 }
 
-$query = 'SELECT u.login, u.nome, u.Data_Nascimento, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c" ORDER BY u.nome';
+$query = 'SELECT u.endereco, u.sexo, u.email, u.cep, u.celular, u.senha, u.login, u.nome, u.Data_Nascimento, u.CPF, u.tel_fixo, u.statuses, t.tipo_desc, s.statuses_desc FROM usuario u INNER JOIN tipo t ON u.tipo = t.tipo INNER JOIN statuses s ON u.statuses = s.statuses WHERE u.tipo = "c" ORDER BY u.nome';
 
 
 $stmt = $mysqli->query($query);
@@ -361,10 +361,16 @@ function calcularIdade($dataNascimento)
             <thead>
                 <tr>
                     <th>Login</th>
+                    <th>Senha</th>
                     <th>Nome</th>
+                    <th>Sexo</th>
+                    <th>Email</th>
                     <th>Idade</th>
                     <th>CPF</th>
                     <th>Telefone Fixo</th>
+                    <th>Celular</th>
+                    <th>Endereço</th>
+                    <th>CEP</th>
                     <th>Tipo</th>
                     <th>Status</th>
                     <th>Opção</th>
@@ -374,10 +380,16 @@ function calcularIdade($dataNascimento)
                 <?php while ($row = $stmt->fetch_assoc()) : ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['login']); ?></td>
+                        <td><?php echo htmlspecialchars($row['senha']); ?></td>
                         <td><?php echo htmlspecialchars($row['nome']); ?></td>
+                        <td><?php echo htmlspecialchars($row['sexo']); ?></td>
+                        <td><?php echo htmlspecialchars($row['email']); ?></td>
                         <td><?php echo calcularIdade($row['Data_Nascimento']); ?></td>
                         <td><?php echo htmlspecialchars($row['CPF']); ?></td>
                         <td><?php echo htmlspecialchars($row['tel_fixo']); ?></td>
+                        <td><?php echo htmlspecialchars($row['celular']); ?></td>
+                        <td><?php echo htmlspecialchars($row['endereco']); ?></td>
+                        <td><?php echo htmlspecialchars($row['cep']); ?></td>
                         <td><?php echo htmlspecialchars($row['tipo_desc']); ?></td>
                         <td><?php echo htmlspecialchars($row['statuses_desc']); ?></td>
                         <td>
@@ -447,10 +459,16 @@ function calcularIdade($dataNascimento)
                     '<thead>' +
                     '<tr>' +
                     '<th>Login</th>' +
+                    '<th>Senha</th>' +
                     '<th>Nome</th>' +
+                    '<th>Sexo</th>' +
+                    '<th>Email</th>' +
                     '<th>Idade</th>' +
                     '<th>CPF</th>' +
                     '<th>Telefone Fixo</th>' +
+                    '<th>Celular</th>' +
+                    '<th>Endereço</th>' +
+                    '<th>CEP</th>' +
                     '<th>Tipo</th>' +
                     '<th>Status</th>' +
                     '</tr>' +
@@ -458,8 +476,8 @@ function calcularIdade($dataNascimento)
                     '<tbody>';
 
                 $('.fl-table tbody tr:visible').each(function(index, row) {
-                    var columns = $(row).find('td:lt(7)').map(function() {
-                        return $(this).text().replace(/\n/g, '<br><br><br><br><br>'); 
+                    var columns = $(row).find('td').map(function() {
+                        return $(this).text().replace(/\n/g, '');
                     }).get();
 
                     tabelaHtml += '<tr><td>' + columns.join('</td><td>') + '</td></tr>';

@@ -162,8 +162,17 @@ if (isset($_SESSION['2fa']) && $_SESSION['2fa'] == true) {
                     event.preventDefault();
                     alert("As senhas não coincidem. Por favor, verifique.");
                 }
+
+                const hoje = new Date();
+                const dataNascimento = new Date(datNascimento.value);
+
+                if (dataNascimento >= hoje) {
+                    event.preventDefault();
+                    alert("A data de nascimento não pode ser igual ou posterior à data de hoje. Por favor, verifique.");
+                }
             });
         });
+
 
         function showH1() {
             var campos = ['nome', 'email', 'nome_materno', 'cpf', 'celular', 'tel_fixo', 'endereco', 'login', 'senha', 'conf_senha', 'cep'];
